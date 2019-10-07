@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- logback配置
+     其中scan和scanPeriod表示每隔60s重新扫描一遍logback.xml更新logback配置
+     debug=false表示不记录logback自身产生的日志信息-->
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+    <!-- 定义一些全局变量 -->
+    <!-- 日志等级有 trace<debug<info<warn<error -->
+    <property name="log.level" value="debug" />
+    <!-- 日志最大保存记录，单位是 天 -->
+    <property name="log.maxHistory" value="30" />
+    <!-- 日志文件保存位置 -->
+    <property name="log.filePath" value="${catalina.base}/logs/webapps" />
+    <!-- 日志格式 -->
+    <property name="log.pattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [$thread] %-5level : %msg%n" />
+
+    <!-- 定义appender -->
+    <!-- appender指定日志输出的目的地/媒介 -->
+    <!-- 1)输出到控制台 -->
+    <appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender" >
+        <!-- 日志输出格式 -->
+        <encoder>
+            <pattern>${log.pattern}</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 2)debug级别的日志输出的媒介设置 -->
+    <!-- 其中RollingFileAppender是滚动文件输出，即输出到日志文件中，当满足某个规则（如到了第二天）appender就会将日志输出新的日志文件中 -->
+    <appender name="debugAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 文件路径 -->
+        <file>${log.filePath}/debug.log</file>
+        <!-- 指定滚动规则，这里是基于时间的滚动 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy" >
+            <!-- 旧的日志文件保存位置与名称 -->
+            <fileNamePattern>${log.filePath}/debug/debug.%d{yyyy-MM-dd}.log.gz</fileNamePattern>
+            <MaxHistory>${log.maxHistory}</MaxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${log.pattern}</pattern>
+        </encoder>
+        <!-- 设置过滤器，这里是日志级别过滤器,只有DEBUG级别日志会写入该日志文件中 -->
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>DEBUG</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+
+    <!-- 3)info级别的日志输出的媒介设置 -->
+    <appender name="infoAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 文件路径 -->
+        <file>${log.filePath}/info.log</file>
+        <!-- 指定滚动规则，这里是基于时间的滚动 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy" >
+            <!-- 旧的日志文件保存位置与名称 -->
+            <fileNamePattern>${log.filePath}/info/info.%d{yyyy-MM-dd}.log.gz</fileNamePattern>
+            <MaxHistory>${log.maxHistory}</MaxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${log.pattern}</pattern>
+        </encoder>
+        <!-- 设置过滤器，这里是日志级别过滤器,只有DEBUG级别日志会写入该日志文件中 -->
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>INFO</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+
+    <!-- 4)error级别的日志输出的媒介设置 -->
+    <appender name="errorAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 文件路径 -->
+        <file>${log.filePath}/error.log</file>
+        <!-- 指定滚动规则，这里是基于时间的滚动 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy" >
+            <!-- 旧的日志文件保存位置与名称 -->
+            <fileNamePattern>${log.filePath}/error/error.%d{yyyy-MM-dd}.log.gz</fileNamePattern>
+            <MaxHistory>${log.maxHistory}</MaxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${log.pattern}</pattern>
+        </encoder>
+        <!-- 设置过滤器，这里是日志级别过滤器,只有DEBUG级别日志会写入该日志文件中 -->
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+
+    <!-- logger标签指定一个logger对象，由该对象执行日志记录 -->
+    <!-- 其中name是指定该logger对象的活动范围，即对于在该范围内，都会使用该logger对象的设置 -->
+    <logger name="com.hhx" level="${log.level}">
+        <appender-ref ref="debugAppender" />
+        <appender-ref ref="infoAppender" />
+        <appender-ref ref="errorAppender" />
+    </logger>
+
+     也是logger对象，是所有logger的父类
+    <root level="info">
+        <appender-ref ref="consoleAppender" />
+    </root>
+
+</configuration>

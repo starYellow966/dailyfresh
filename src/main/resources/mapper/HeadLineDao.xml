@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="hhx.dao.HeadLineDao">
+    <resultMap id="HeadLineResult" type="hhx.entity.HeadLine">
+        <id column="line_id" property="lineId" />
+        <result column="img_addr" property="imgAddr" />
+        <result column="priority" property="priority" />
+        <association property="spu" column="spu_id" javaType="hhx.entity.GoodSPU">
+            <id column="spu_id" property="spuId" />
+            <result column="spu_name" property="spuName" />
+            <result column="spu_detail" property="spuDetail" />
+        </association>
+    </resultMap>
+
+    <select id="queryAll" resultMap="HeadLineResult">
+        select l.line_id, l.img_addr, l.priority,
+        l.spu_id, s.spu_name, s.spu_detail
+        from df_headline l, df_good_spu s
+        where l.is_delete=0 and l.spu_id=s.spu_id
+        order by l.priority desc
+    </select>
+
+    <insert id="addHeadLine">
+        insert into df_headline(line_id, spu_id, img_addr, priority)
+        value (#{lineId}, #{spu.spuId}, #{imgAddr}, #{priority})
+    </insert>
+
+</mapper>

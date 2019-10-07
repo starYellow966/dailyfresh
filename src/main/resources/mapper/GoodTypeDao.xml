@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="hhx.dao.GoodTypeDao">
+
+    <select id="queryAllType" resultType="hhx.entity.GoodType">
+        select *
+        from df_goods_type
+        where is_delete=0;
+    </select>
+
+    <select id="queryType" resultType="hhx.entity.GoodType">
+        select *
+        from df_goods_type
+        <where>
+            <if test="typeName != null">and type_name like '%${typeName}%'</if>
+            <if test="typeId != null">and type_id=#{typeId}</if>
+            <if test="true">and is_delete=0</if>
+        </where>
+    </select>
+
+    <insert id="insertType" >
+        insert into df_goods_type(type_name, priority, is_delete, type_en_name, img_addr)
+        value (#{typeName}, #{priority}, 0, #{typeEnName}, #{imgAddr})
+    </insert>
+
+</mapper>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="hhx.dao.AddressDao">
+
+    <select id="queryAddressByUserId" resultType="hhx.entity.Address">
+        select * from df_address
+        where user_id=#{userId} and is_delete=0
+        order by priority desc
+    </select>
+
+    <insert id="insertAddress">
+        insert into df_address(addressee, address, phone, priority, user_id, is_delete)
+        value (#{addressee}, #{address}, #{phone}, #{priority}, #{userId}, 0)
+    </insert>
+    
+    <update id="deleteAddressByAddrId">
+        update df_address
+        set is_delete=1
+        where addr_id=#{addrId}
+    </update>
+
+</mapper>

@@ -1,0 +1,29 @@
+# For a quick start check out our HTTP Requests collection (Tools|HTTP Client|Open HTTP Requests Collection) or
+# paste cURL into the file and request will be converted to HTTP Request format.
+#
+# Following HTTP Request Live Templates are available:
+# * 'gtrp' and 'gtr' create a GET request with or without query parameters;
+# * 'ptr' and 'ptrp' create a POST request with a simple or parameter-like body;
+# * 'mptr' and 'fptr' create a POST request to submit a form with a text or file field (multipart/form-data);
+
+# 模拟首页，获取所有商品类型的前3个spu
+GET http://localhost:8080/spu/three
+Accept: application/json
+
+###
+
+# 根据品类ID搜索
+GET http://localhost:8080/spu/search?typeid=2
+Accept: application/json
+
+###
+# 根据品类名称搜索
+GET http://localhost:8080/spu/search?typename=手机
+Accept: application/json
+
+###
+# 根据品类名称搜索
+GET http://localhost:8080/spu/search?spuname=手机
+Accept: application/json
+
+###

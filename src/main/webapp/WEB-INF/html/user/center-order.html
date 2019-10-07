@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>B2C商城-用户中心</title>
+    <link rel="stylesheet" type="text/css" href="../../resources/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="../../resources/css/main.css">
+</head>
+<body>
+<!-- 网页顶部内容， 其中登录，注册页面没有 -->
+<div class="header_con">
+    <div class="header">
+        <div class="welcome fl">欢迎来到B2C商城!</div>
+        <div class="fr">
+            <!-- 根据登录与否，切换不同的显示 -->
+            <div id="login-div" class="fl"></div>
+            <div class="user_link fl">
+                <span>|</span>
+                <a href="/user/center">用户中心</a>
+                <span>|</span>
+                <a href="/cart/">我的购物车</a>
+                <span>|</span>
+                <a href="#">我的订单</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 网页搜索框 -->
+<div class="search_bar clearfix">
+    <a href="/" class="logo fl"><img src="../../resources/images/logo.png"></a>
+    <div class="sub_page_name fl">|&nbsp;&nbsp;&nbsp;&nbsp;用户中心</div>
+    <form method="get" action="/search" class="search_con fr">
+        <input type="text" class="input_text fl" name="q" placeholder="搜索商品">
+        <input type="submit" class="input_btn fr" name="" value="搜索">
+    </form>
+</div>
+
+<!-- 网页主体内容 -->
+<div class="main_con clearfix">
+    <div class="left_menu_con clearfix">
+        <h3>用户中心</h3>
+        <ul>
+            <li><a href="/user/center" >· 个人信息</a></li>
+            <li><a href="/user/center/order" class="active">· 全部订单</a></li>
+            <li><a href="/user/center/address" >· 收货地址</a></li>
+        </ul>
+    </div>
+    <!-- 用户中心页面右侧的内容块 -->
+    <div class="right_content clearfix">
+        <h3 class="common_title2">全部订单</h3>
+        <div id="order-list"></div>
+
+<!--        <div class="pagenation">-->
+<!--            {% if cur_page.has_previous %}-->
+<!--            <a href="?type={{ cur_type.id }}&sort={{ sort }}&page_num={{ cur_page.previous_page_number }}">-->
+<!--                上一页-->
+<!--            </a>-->
+<!--            {% endif %}-->
+<!--            {% for num in pages %}-->
+<!--            {% if num == cur_page.number %}-->
+<!--            <a href="?page={{ num }}" class="active">{{ num }}</a>-->
+<!--            {% else %}-->
+<!--            <a href="?page={{ num }}">{{ num }}</a>-->
+<!--            {% endif %}-->
+<!--            {% endfor %}-->
+<!--            {% if cur_page.has_next %}-->
+<!--            <a href="?page={{ cur_page.next_page_number }}">-->
+<!--                下一页-->
+<!--            </a>-->
+<!--            {% endif %}-->
+<!--        </div>-->
+    </div>
+</div>
+
+
+<!--<div class="footer">-->
+<!--    <div class="foot_link">-->
+<!--        <a href="#">关于我们</a>-->
+<!--        <span>|</span>-->
+<!--        <a href="#">联系我们</a>-->
+<!--        <span>|</span>-->
+<!--        <a href="#">招聘人才</a>-->
+<!--        <span>|</span>-->
+<!--        <a href="#">友情链接</a>-->
+<!--    </div>-->
+<!--    <p>CopyRight © 2016 北京天天生鲜信息技术有限公司 All Rights Reserved</p>-->
+<!--    <p>电话：010-****888    京ICP备*******8号</p>-->
+<!--</div>-->
+
+<script type="text/javascript" src="../../resources/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="../../resources/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="../../resources/js/head.js"></script>
+<script type="text/javascript" src="../../resources/js/user/center-order.js"></script>
+
+</body>
+</html>

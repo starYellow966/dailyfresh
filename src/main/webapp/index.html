@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>B2C商城-首页</title>
+    <link rel="stylesheet" type="text/css" href="resources/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="resources/css/main.css">
+</head>
+<body>
+
+<!-- 网页顶部内容， 其中登录，注册页面没有 -->
+<div class="header_con">
+    <div class="header">
+        <div class="welcome fl">欢迎来到B2C商城!</div>
+        <div class="fr">
+            <!-- 根据登录与否，切换不同的显示 -->
+            <div id="login-div" class="fl"></div>
+            <div class="user_link fl">
+                <span>|</span>
+                <a href="/user/center">用户中心</a>
+                <span>|</span>
+                <a href="/cart/">我的购物车</a>
+                <span>|</span>
+                <a href="#">我的订单</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 网页搜索框 -->
+<div class="search_bar clearfix">
+    <a href="/" class="logo fl"><img src="../resources/images/logo.png"></a>
+    <form method="get" action="/good/list" class="search_con fl">
+        <input type="text" class="input_text fl" name="q" placeholder="搜索商品">
+        <input type="submit" class="input_btn fr"  value="搜索">
+    </form>
+    <div class="guest_cart fr">
+        <a href="/cart/" class="cart_name fl">我的购物车</a>
+        <div class="goods_count fl" id="show_count">0</div>
+    </div>
+</div>
+
+<!-- 网页主体内容 -->
+<div class="navbar_con">
+    <div class="navbar">
+        <h1 class="fl">全部商品分类</h1>
+        <ul class="navlist fl">
+            <li><a href="">首页</a></li>
+            <li class="interval">|</li>
+            <li><a href="">手机生鲜</a></li>
+            <li class="interval">|</li>
+            <li><a href="">抽奖</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="center_con clearfix">
+    <!-- 所有商品类别 -->
+    <ul class="subnav fl"></ul>
+
+    <!-- 首页轮播商品信息 TODO:滚动功能失效 -->
+    <div class="slide fl">
+        <ul class="slide_pics"></ul>
+        <div class="prev"></div>
+        <div class="next"></div>
+        <ul class="points"></ul>
+    </div>
+<!--    <div class="adv fl">-->
+<!--        {# 首页促销活动信息 #}-->
+<!--        {% for banners in promotion_banners %}-->
+<!--        <a href="{{ banners.url }}"><img src="{{ banners.image.url }}"></a>-->
+<!--        {% endfor %}-->
+<!--    </div>-->
+</div>
+
+<!-- 首页分类商品展示信息 -->
+<div class="list_model"></div>
+
+<!--<div class="footer">-->
+<!--    <div class="foot_link">-->
+<!--        <a href="#">关于我们</a>-->
+<!--        <span>|</span>-->
+<!--        <a href="#">联系我们</a>-->
+<!--        <span>|</span>-->
+<!--        <a href="#">招聘人才</a>-->
+<!--        <span>|</span>-->
+<!--        <a href="#">友情链接</a>-->
+<!--    </div>-->
+<!--    <p>CopyRight © 2016 北京天天生鲜信息技术有限公司 All Rights Reserved</p>-->
+<!--    <p>电话：010-****888    京ICP备*******8号</p>-->
+<!--</div>-->
+
+<script type="text/javascript" src="resources/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="resources/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="resources/js/slide.js"></script>
+<script type="text/javascript" src="resources/js/index.js"></script>
+<script type="text/javascript" src="resources/js/head.js"></script>
+</body>
+</html>

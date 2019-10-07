@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="hhx.dao.OrderDetailDao">
+    <resultMap id="OrderDetailMap" type="hhx.entity.OrderDetail">
+        <result column="order_id" property="orderId" />
+        <result column="addr_id" property="addrId" />
+        <result column="user_id" property="userId" />
+        <result column="total_amount" property="totalAmount" />
+        <result column="total_count" property="totalCount" />
+        <result column="freight" property="freight" />
+        <result column="create_time" property="createTime" />
+        <result column="pay_method" property="payMethod" typeHandler="org.apache.ibatis.type.EnumOrdinalTypeHandler" />
+        <result column="pay_status" property="payStatus" typeHandler="org.apache.ibatis.type.EnumOrdinalTypeHandler" />
+        <collection property="orderGoodList" ofType="hhx.entity.OrderGood" javaType="java.util.ArrayList">
+            <result column="order_id" property="orderId" />
+            <result column="sku_id" property="skuId"/>
+            <result column="num" property="num" />
+            <result column="price" property="price" />
+            <result column="comment" property="comment" />
+            <result column="last_edit_time" property="lastEditTime" />
+            <result column="create_time" property="createTime" />
+        </collection>
+    </resultMap>
+
+    <insert id="insertOrderDetail" parameterType="hhx.entity.OrderDetail">
+        insert into df_order_detail(order_id, addr_id, user_id, pay_method, pay_status, total_amount, total_count, freight, create_time)
+        value (#{orderId}, #{addrId}, #{userId}, #{payMethod.methodCode}, #{payStatus.statusCode}, #{totalAmount}, #{totalCount}, #{freight}, #{createTime})
+    </insert>
+
+
+    <select id="queryAllOrderDetailByUserId" resultMap="OrderDetailMap">
+        select
+        od.order_id, od.addr_id, od.user_id, od.pay_method, od.pay_status, od.total_amount, od.total_count, od.freight, od.create_time,
+        og.sku_id, og.num, og.price, og.comment, og.last_edit_time
+        from df_order_detail od, df_order_good og
+        where od.order_id=og.order_id and od.user_id=#{userId}
+        order by og.last_edit_time desc
+    </select>
+
+    <update id="updatePayStatus" >
+        update df_order_detail
+        set pay_status=#{payStatusCode}
+        where order_id=#{orderId}
+    </update>
+
+    <select id="queryOrderDetailByOrderId" resultMap="OrderDetailMap">
+        select
+        od.order_id, od.addr_id, od.user_id, od.pay_method, od.pay_status, od.total_amount, od.total_count, od.freight, od.create_time,
+        og.sku_id, og.num, og.price, og.comment, og.last_edit_time
+        from df_order_detail od, df_order_good og
+        where od.order_id=og.order_id and od.order_id=#{orderId}
+        order by og.last_edit_time desc
+    </select>
+
+</mapper>

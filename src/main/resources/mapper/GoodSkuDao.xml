@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="hhx.dao.GoodSkuDao">
+    <resultMap id="GoodSkuRes" type="hhx.entity.GoodSku">
+        <id column="sku_id" property="skuId" />
+        <result column="sku_name" property="skuName" />
+        <result column="sock" property="sock" />
+        <result column="price" property="price" />
+        <result column="priority" property="priority" />
+        <result column="spec" property="spec" />
+        <result column="sku_img_addr" property="skuImgAddr" />
+        <result column="sku_brief_info" property="skuBriefInfo" />
+        <association property="goodSPU" column="spu_id" javaType="hhx.entity.GoodSPU" >
+            <id column="spu_id" property="spuId" />
+            <result column="spu_name" property="spuName" />
+        </association>
+    </resultMap>
+
+    <insert id="insertSku">
+        insert into df_good_sku(sku_name, sock, price, priority, spec, sku_img_addr, sku_brief_info, spu_id, create_time, last_edit_time)
+        value (#{skuName}, #{sock}, #{price}, #{priority}, #{spec}, #{skuImgAddr}, #{skuBriefInfo}, #{goodSPU.spuId}, #{createTime}, #{lastEditTime})
+    </insert>
+
+    <select id="querySkuBySpuId" resultMap="GoodSkuRes">
+        select k.sku_id, k.sku_name, k.sock, k.price, k.priority, k.spec, k.sku_img_addr, k.sku_brief_info,
+        p.spu_id, p.spu_name
+        from df_good_sku k, df_good_spu p
+        where k.spu_id=#{spuId} and k.spu_id=p.spu_id
+        order by k.priority desc;
+    </select>
+
+    <select id="querySkuBySkuId" resultMap="GoodSkuRes">
+        select k.sku_id, k.sku_name, k.sock, k.price, k.priority, k.spec, k.sku_img_addr, k.sku_brief_info,
+        p.spu_id, p.spu_name
+        from df_good_sku k, df_good_spu p
+        where k.sku_id=#{skuId} and k.spu_id=p.spu_id
+        order by k.priority desc;
+    </select>
+
+</mapper>

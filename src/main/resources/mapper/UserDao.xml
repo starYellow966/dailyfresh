@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="hhx.dao.UserDao">
+
+    <select id="checkUser" resultType="hhx.entity.User">
+        select * from df_user
+        where user_name=#{username} and pwd=#{pwd}
+    </select>
+
+    <select id="queryUserById" resultType="hhx.entity.User">
+        select * from df_user
+        where user_id=#{userId}
+    </select>
+
+    <insert id="addUser">
+        insert into df_user(user_name, pwd, email, phone, create_time, last_edit_time)
+        value (#{userName}, #{pwd}, #{email}, #{phone}, #{createTime}, #{lastEditTime})
+    </insert>
+
+    <update id="updateUser" parameterType="hhx.entity.User">
+        update df_user
+        <set>
+            <if test="userName != null">user_name=#{userName},</if>
+            <if test="email != null">email=#{email},</if>
+            <if test="phone != null">phone=#{phone},</if>
+            <if test="isActive != null">is_active=#{isActive},</if>
+            <if test="userStatus != null">user_status=#{userStatus},</if>
+            <if test="lastEditTime != null">last_edit_time=#{lastEditTime}</if>
+        </set>
+        where user_id=#{userId};
+    </update>
+
+</mapper>

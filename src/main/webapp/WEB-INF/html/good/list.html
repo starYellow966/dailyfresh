@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>B2C商城-商品列表</title>
+    <link rel="stylesheet" type="text/css" href="../resources/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="../resources/css/main.css">
+</head>
+<body>
+<!-- 网页顶部内容， 其中登录，注册页面没有 -->
+<div class="header_con">
+    <div class="header">
+        <div class="welcome fl">欢迎来到B2C商城!</div>
+        <div class="fr">
+            <!-- 根据登录与否，切换不同的显示 -->
+            <div id="login-div" class="fl"></div>
+            <div class="user_link fl">
+                <span>|</span>
+                <a href="/user/center">用户中心</a>
+                <span>|</span>
+                <a href="/cart/">我的购物车</a>
+                <span>|</span>
+                <a href="#">我的订单</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 网页搜索框这一行， -->
+<div class="search_bar clearfix">
+    <a href="/" class="logo fl"><img src="../resources/images/logo.png"></a>
+    <form method="get" action="/good/list" class="search_con fl">
+        <input type="text" class="input_text fl" name="q" placeholder="搜索商品">
+        <input type="submit" class="input_btn fr"  value="搜索">
+    </form>
+    <div class="guest_cart fr">
+        <a href="{% url 'cart:index' %}" class="cart_name fl">我的购物车</a>
+        <div class="goods_count fl" id="show_count">{{ cart_count }}</div>
+    </div>
+</div>
+
+<!-- 网页主体内容 -->
+<div class="navbar_con">
+    <div class="navbar clearfix">
+        <div class="subnav_con fl">
+            <h1>全部商品分类</h1>
+            <span></span>
+            <ul class="subnav"></ul>
+        </div>
+        <ul class="navlist fl">
+            <li><a href="">首页</a></li>
+            <li class="interval">|</li>
+            <li><a href="">手机生鲜</a></li>
+            <li class="interval">|</li>
+            <li><a href="">抽奖</a></li>
+        </ul>
+    </div>
+</div>
+
+<!--<div class="breadcrumb">-->
+<!--    <a href="#">全部分类</a>-->
+<!--    <span>></span>-->
+<!--    <a href="{% url 'goods:list' %}?type={{ cur_type.id }}">{{ cur_type.name }}</a>-->
+<!--</div>-->
+
+<div class="main_wrap clearfix">
+    <div class="l_wrap fl clearfix">
+        <div class="new_goods">
+            <h3>新品推荐</h3>
+            <ul id="new-spu-list"></ul>
+        </div>
+    </div>
+
+    <div class="r_wrap fr clearfix">
+        <div class="sort_bar">
+            <a href="?type={{ cur_type.id }}&sort=default&page_num={{ cur_page.number }}"class="active">默认</a>
+            <a href="?type={{ cur_type.id }}&sort=hot&page_num={{ cur_page.number }}">销量</a>
+        </div>
+
+        <ul class="goods_type_list clearfix"></ul>
+
+<!--        <div class="pagenation">-->
+<!--            {% if cur_page.has_previous %}-->
+<!--            <a href="?type={{ cur_type.id }}&sort={{ sort }}&page_num={{ cur_page.previous_page_number }}">-->
+<!--                上一页-->
+<!--            </a>-->
+<!--            {% endif %}-->
+<!--            {% for num in pages %}-->
+<!--            {% if num == cur_page.number %}-->
+<!--            <a href="?type={{ cur_type.id }}&sort={{ sort }}&page_num={{ num }}" class="active">{{ num }}</a>-->
+<!--            {% else %}-->
+<!--            <a href="?type={{ cur_type.id }}&sort={{ sort }}&page_num={{ num }}">{{ num }}</a>-->
+<!--            {% endif %}-->
+<!--            {% endfor %}-->
+<!--            {% if cur_page.has_next %}-->
+<!--            <a href="?type={{ cur_type.id }}&sort={{ sort }}&page_num={{ cur_page.next_page_number }}">-->
+<!--                下一页-->
+<!--            </a>-->
+<!--            {% endif %}-->
+<!--        </div>-->
+    </div>
+</div>
+
+<script type="text/javascript" src="../resources/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="../resources/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="../resources/js/head.js"></script>
+<script type="text/javascript" src="../resources/js/good/list.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>B2C超市</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet"
+          href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
+    <link rel="stylesheet"
+          href="//g.alicdn.com/msui/sm/0.6.2/css/sm-extend.min.css">
+</head>
+<body>
+
+    <!-- page集合的容器，里面放多个平行的.page，其他.page作为内联页面由路由控制展示 -->
+    <div class="page-group">
+        <!-- 单个page ,第一个.page默认被展示-->
+        <div class="page">
+            <!-- 标题栏 -->
+            <header class="bar bar-nav">
+                <a class="icon icon-me pull-left open-panel" onclick="loginOrCenter()"></a>
+                <h1 class="title">B2C超市</h1>
+            </header>
+
+            <!-- 工具栏 -->
+            <nav class="bar bar-tab">
+                <a class="tab-item external active" href="#">
+                    <span class="icon icon-home"></span>
+                    <span class="tab-label">首页</span>
+                </a>
+                <a class="tab-item external" href="#">
+                    <span class="icon icon-search"></span>
+                    <span class="tab-label">搜索</span>
+                </a>
+                <a class="tab-item external" href="/cart/">
+                    <span class="icon icon-cart"></span>
+                    <span class="tab-label">购物车</span>
+                </a>
+                <a class="tab-item external" href="#">
+                    <span class="icon icon-code"></span>
+                    <span class="tab-label">订单</span>
+                </a>
+            </nav>
+
+            <!-- 这里是页面内容区-->
+            <div class="content">
+                <div class="swiper-container" data-space-between='10'>
+                    <div class="swiper-wrapper" id="headline-content">
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+
+                <div id="spu-content">
+
+                </div>
+
+<!--                <div>-->
+<!--                    <strong>手机</strong>-->
+<!--                </div>-->
+<!--                <div class="content-padded grid-demo">-->
+<!--                    <div class="row no-gutter">-->
+<!--                        <div class="col-33">-->
+<!--                            <div valign="bottom" class="card-header color-white no-border no-padding">-->
+<!--                            <img class='card-cover' src="//gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg" alt="">-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="col-33">-->
+<!--                            <div valign="bottom" class="card-header color-white no-border no-padding">-->
+<!--                                <img class='card-cover' src="//gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg" alt="">-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="card col-33">-->
+<!--                            <div valign="bottom" class="card-header color-white no-border no-padding">-->
+<!--                                <img class='card-cover' src="//gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg" alt="">-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+<!--                <div>-->
+<!--                    <strong>手机</strong>-->
+<!--                </div>-->
+<!--                <div class="content-padded grid-demo">-->
+<!--                    <div class="row no-gutter">-->
+<!--                        <div class="col-33">-->
+<!--                            <div valign="bottom" class="card-header color-white no-border no-padding">-->
+<!--                                <img class='card-cover' src="//gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg" alt="">-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="col-33">-->
+<!--                            <div valign="bottom" class="card-header color-white no-border no-padding">-->
+<!--                                <img class='card-cover' src="//gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg" alt="">-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="card col-33">-->
+<!--                            <div valign="bottom" class="card-header color-white no-border no-padding">-->
+<!--                                <img class='card-cover' src="//gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg" alt="">-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+<!--                <div>-->
+<!--                    <strong>手机</strong>-->
+<!--                </div>-->
+<!--                <div class="content-padded grid-demo">-->
+<!--                    <div class="row no-gutter">-->
+<!--                        <div class="col-33">-->
+<!--                            <div valign="bottom" class="card-header color-white no-border no-padding">-->
+<!--                                <img class='card-cover' src="//gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg" alt="">-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="col-33">-->
+<!--                            <div valign="bottom" class="card-header color-white no-border no-padding">-->
+<!--                                <img class='card-cover' src="//gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg" alt="">-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="card col-33">-->
+<!--                            <div valign="bottom" class="card-header color-white no-border no-padding">-->
+<!--                                <img class='card-cover' src="//gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg" alt="">-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+<!--                <div>-->
+<!--                    <strong>手机</strong>-->
+<!--                </div>-->
+<!--                <div class="content-padded grid-demo">-->
+<!--                    <div class="row no-gutter">-->
+<!--                        <div class="col-33">-->
+<!--                            <div valign="bottom" class="card-header color-white no-border no-padding">-->
+<!--                                <img class='card-cover' src="//gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg" alt="">-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="col-33">-->
+<!--                            <div valign="bottom" class="card-header color-white no-border no-padding">-->
+<!--                                <img class='card-cover' src="//gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg" alt="">-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="card col-33">-->
+<!--                            <div valign="bottom" class="card-header color-white no-border no-padding">-->
+<!--                                <img class='card-cover' src="//gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg" alt="">-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+
+            </div>
+        </div>
+    </div>
+
+    <script type='text/javascript'  src='//g.alicdn.com/sj/lib/zepto/zepto.js' charset='utf-8'></script>
+    <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
+    <script type="text/javascript" src="../resources/js/index.js" charset="utf-8" ></script>
+
+</body>
+</html>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="hhx.dao.GoodSPUDao">
+    
+    <resultMap id="GoodSPUResult" type="hhx.entity.GoodSPU">
+        <id column="spu_id" property="spuId" />
+        <result column="spu_name" property="spuName" />
+        <result column="spu_detail" property="spuDetail" />
+        <result column="create_time" property="createTime" />
+        <result column="last_edit_time" property="lastEditTime" />
+        <result column="is_delete" property="isDelete" />
+        <result column="img_addr" property="imgAddr" />
+        <association property="goodType" column="type_id" javaType="hhx.entity.GoodType">
+            <id column="type_id" property="typeId" />
+            <result column="type_name" property="typeName" />
+            <result column="priority" property="priority" />
+        </association>
+    </resultMap>
+
+    <insert id="insertGoodSPU">
+        insert into df_good_spu( spu_name, spu_detail, create_time, last_edit_time, type_id, is_delete, img_addr)
+        value (#{spuName}, #{spuDetail}, #{createTime}, #{lastEditTime}, #{goodType.typeId}, 0, #{imgAddr})
+    </insert>
+
+    <select id="querySpuByTypeId" resultMap="GoodSPUResult">
+        select
+        s.spu_id, s.spu_name, s.spu_detail, s.create_time, s.last_edit_time,
+        s.type_id, t.type_name, t.priority, s.is_delete, s.img_addr
+        from df_good_spu s, df_goods_type t
+        where s.type_id=t.type_id and s.type_id=#{typeId} and s.is_delete=0
+    </select>
+
+    <select id="querySpu" resultMap="GoodSPUResult">
+        select
+        s.spu_id, s.spu_name, s.spu_detail, s.create_time, s.last_edit_time,
+        s.type_id, t.type_name, t.priority, s.is_delete, s.img_addr
+        from df_good_spu s, df_goods_type t
+        <where>
+            <if test="true">and s.type_id=t.type_id and s.is_delete=0</if>
+            <if test="goodType != null and goodType.typeId != null">and s.type_id=#{goodType.typeId}</if>
+            <if test="spuName != null">and (s.spu_name like '%${spuName}%' or t.type_name like '%${spuName}')</if> <!-- TODO:这种like搜索效率低，后期看能不能换成别的搜索引擎-->
+        </where>
+    </select>
+
+    <select id="queryTopNSpuByTypeId" resultMap="GoodSPUResult">
+        select
+        s.spu_id, s.spu_name, s.spu_detail, s.create_time, s.last_edit_time,
+        s.type_id, t.type_name, t.priority, s.is_delete, s.img_addr
+        from df_good_spu s, df_goods_type t
+        where s.type_id=t.type_id and s.type_id=#{typeId} and s.is_delete=0
+        limit #{n}
+    </select>
+
+    <select id="querySpuBySpuId" resultMap="GoodSPUResult">
+        select
+        s.spu_id, s.spu_name, s.spu_detail, s.create_time, s.last_edit_time,
+        s.type_id, t.type_name, t.priority, s.is_delete, s.img_addr
+        from df_good_spu s, df_goods_type t
+        where s.type_id=t.type_id and s.spu_id=#{spuId} and s.is_delete=0
+    </select>
+
+    <select id="queryNewNSpu" resultMap="GoodSPUResult">
+        select
+        s.spu_id, s.spu_name, s.spu_detail, s.create_time, s.last_edit_time,
+        s.type_id, t.type_name, t.priority, s.is_delete, s.img_addr
+        from df_good_spu s, df_goods_type t
+        where s.type_id=t.type_id and s.is_delete=0
+        order by s.last_edit_time desc
+        limit #{n}
+    </select>
+
+</mapper>
