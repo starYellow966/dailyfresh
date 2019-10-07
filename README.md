@@ -6,19 +6,6 @@
 
 ![业务流程](./src/main/resources//img/readme/业务流程图.png)
 
-下面是效果图
-![首页](./src/main/resources//img/readme/首页.png)
-![注册](./src/main/resources//img/readme/注册.png)
-![登录](./src/main/resources//img/readme/登录.png)
-![用户中心-个人信息页](./src/main/resources//img/readme/用户中心-个人信息页.png)
-![用户中心-地址页](./src/main/resources//img/readme/用户中心-地址页.png)
-![商品搜索页](./src/main/resources//img/readme/商品列表.png)
-![商品详情页](./src/main/resources//img/readme/商品详情页.png)
-![购物车页](./src/main/resources//img/readme/购物车.png)
-![提交订单页](./src/main/resources//img/readme/提交订单.png)
-![用户中心-订单页](./src/main/resources//img/readme/用户中心-订单页.png)
-![订单评论页](./src/main/resources//img/readme/订单评价.png)
-
 ## 模块划分
 
 ![模块划分](./src/main/resources//img/readme/模块划分.png)
@@ -51,8 +38,22 @@
     - `WEB-INF` 目录：存放 web.xml 和 html 文件
     - `web.xml` ：负责DispatcherServlet和一些自定义Filter的配置
     
-# 项目层次
+## 项目层次
 
 - `Dao` 层：负责与数据库打交道。返回的结果是 POJO。如果产生异常，则往上抛
 - `Service` 层：业务层，返回结果是 Dto 结构。如果产生异常，则往上抛
 -  `Controller` 层：请求处理层。返回结果是 JSON。只有这层处理异常
+
+## 效果展示
+
+![首页](./src/main/resources//img/readme/首页.png)
+![注册](./src/main/resources//img/readme/注册.png)
+![登录](./src/main/resources//img/readme/登录.png)
+![用户中心-个人信息页](./src/main/resources//img/readme/用户中心-个人信息页.png)
+![用户中心-地址页](./src/main/resources//img/readme/用户中心-地址页.png)
+![商品搜索页](./src/main/resources//img/readme/商品列表.png)
+![商品详情页](./src/main/resources//img/readme/商品详情页.png)
+![购物车页](./src/main/resources//img/readme/购物车.png)
+![提交订单页](./src/main/resources//img/readme/提交订单.png)
+![用户中心-订单页](./src/main/resources//img/readme/用户中心-订单页.png)
+![订单评论页](./src/main/resources//img/readme/订单评价.png)
